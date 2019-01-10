@@ -27,21 +27,22 @@ class PBRTException{
 class PBRTF{
     private:
 
-    char alph[4];
+    char alph[];
     string inputStrAlph;
     int linecount, alphLength;
     string outputFileName;
     PBRTException exception;
 
-    public: 
-
-    PBRTF(string inputStrAlph, string outputFileName){
+    public: PBRTF(string inputStrAlph, string outputFileName){
         this->inputStrAlph = inputStrAlph;
         this->outputFileName = outputFileName;
-        //alph = inputalph;
         alphLength = this->inputStrAlph.size();
-        
+        setAlphArray(alph, this->inputStrAlph, alphLength);
         linecount = 0;
+    }
+
+    private: void setAlphArray(char alph[], string stralph, int n){
+
     }
 
     private: void foutdash(int dashcount, ofstream *fout){
@@ -111,14 +112,15 @@ class PBRTF{
     }
 
     public: void showInformation(){
-        cout << "-------------------------------\n";
+        cout << "----------------------------------\n";
         cout << "PBRTF object information :" << endl;
-        cout << "-------------------------------\n";
+        cout << "----------------------------------\n";
         cout << "Input alphabet = " << inputStrAlph << endl;
         cout << "Length of alphabet = " << alphLength << endl;
         cout << "Output file name = " << outputFileName << endl;
+        cout << "Estimated number of combinations = " << "-?-" << endl;
         //cout << " = " <<  << endl;
-        cout << "-------------------------------\n";
+        cout << "----------------------------------\n";
         
     }
 
@@ -132,8 +134,8 @@ class PBRTF{
 int main(){
     string alph = "1234";
 
-    PBRTF brtf(alph, "file.txt");
-    brtf.showInformation();
+    PBRTF brtf(alph, "OutputFile.txt");
+    //brtf.showInformation();
     brtf.foutBrtfCombinations(3);
 
     return 0;
