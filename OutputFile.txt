@@ -1,28 +1,33 @@
-amount = 1   charNumb = 0   newpaspart = 111
-amount = 1   charNumb = 1   newpaspart = 112
-amount = 1   charNumb = 2   newpaspart = 113
-amount = 1   charNumb = 0   newpaspart = 121
-amount = 1   charNumb = 1   newpaspart = 122
-amount = 1   charNumb = 2   newpaspart = 123
-amount = 1   charNumb = 0   newpaspart = 131
-amount = 1   charNumb = 1   newpaspart = 132
-amount = 1   charNumb = 2   newpaspart = 133
-amount = 1   charNumb = 0   newpaspart = 211
-amount = 1   charNumb = 1   newpaspart = 212
-amount = 1   charNumb = 2   newpaspart = 213
-amount = 1   charNumb = 0   newpaspart = 221
-amount = 1   charNumb = 1   newpaspart = 222
-amount = 1   charNumb = 2   newpaspart = 223
-amount = 1   charNumb = 0   newpaspart = 231
-amount = 1   charNumb = 1   newpaspart = 232
-amount = 1   charNumb = 2   newpaspart = 233
-amount = 1   charNumb = 0   newpaspart = 311
-amount = 1   charNumb = 1   newpaspart = 312
-amount = 1   charNumb = 2   newpaspart = 313
-amount = 1   charNumb = 0   newpaspart = 321
-amount = 1   charNumb = 1   newpaspart = 322
-amount = 1   charNumb = 2   newpaspart = 323
-amount = 1   charNumb = 0   newpaspart = 331
-amount = 1   charNumb = 1   newpaspart = 332
-amount = 1   charNumb = 2   newpaspart = 333
+PBRTF object information :
+Input alphabet = 1 2 3 
+Length of alphabet = 3
+Output file name = OutputFile.txt
+----------------------------------
+AL = 3  pass = 111
+AL = 3  pass = 112
+AL = 3  pass = 113
+AL = 3  pass = 121
+AL = 3  pass = 122
+AL = 3  pass = 123
+AL = 3  pass = 131
+AL = 3  pass = 132
+AL = 3  pass = 133
+AL = 3  pass = 211
+AL = 3  pass = 212
+AL = 3  pass = 213
+AL = 3  pass = 221
+AL = 3  pass = 222
+AL = 3  pass = 223
+AL = 3  pass = 231
+AL = 3  pass = 232
+AL = 3  pass = 233
+AL = 3  pass = 311
+AL = 3  pass = 312
+AL = 3  pass = 313
+AL = 3  pass = 321
+AL = 3  pass = 322
+AL = 3  pass = 323
+AL = 3  pass = 331
+AL = 3  pass = 332
+AL = 3  pass = 333
 EOF

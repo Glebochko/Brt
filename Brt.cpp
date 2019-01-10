@@ -5,12 +5,11 @@ using namespace std;
 
 
 
-class PBRTException{
+/*class PBRTException{
     public: PBRTException(){}
 
     void oversizedFile(ofstream *fout){
         *fout << "File too big\nExit"; 
-        //*fout.close();
         
     } 
 
@@ -21,7 +20,7 @@ class PBRTException{
         } 
         return answer;   
     }
-};
+};*/
     
 
 class PBRTF{
@@ -30,7 +29,7 @@ class PBRTF{
     char alph[4];
     int linecount, alphLength;
     string inputStrAlph, outputFileName;
-    PBRTException exception;
+    //PBRTException exception;
 
     public: PBRTF(string inputStrAlph, string outputFileName){
         this->inputStrAlph = inputStrAlph;
@@ -55,22 +54,37 @@ class PBRTF{
         }
     }
 
-    private: void recFBC(int amount, ofstream *fout, string paspart){
+    private: void foutShowInformation(ofstream *fout){
+        *fout << "PBRTF object information :" << endl;
+        *fout << "Input alphabet = ";
+        for(int i = 0; i < alphLength; i++){
+            *fout << alph[i] << " ";
+            if (i == alphLength - 1){
+                *fout << endl;
+            }
+        }
+        *fout << "Length of alphabet = " << alphLength << endl;
+        *fout << "Output file name = " << outputFileName << endl;
+        *fout << "----------------------------------\n";
+        
+    }
+
+    private: void recFBC(int amount, ofstream *fout, string passpart){
         if (amount >= 1){
 
-            string newpaspart;
+            string newpasspart;
 
             for(int charNumb = 0; charNumb < alphLength; charNumb++){
-                newpaspart = paspart + alph[charNumb];
+                newpasspart = passpart + alph[charNumb];
                 if (amount == 1){
-                    *fout << "amount = " << amount;
-                    *fout << "   charNumb = " << charNumb;
-                    *fout << "   newpaspart = " << newpaspart << endl;
+                     *fout << "AL = " << alphLength;
+                     *fout << "  pass = " << newpasspart << endl;
+                    // *fout << newpasspart << endl;
                     //foutdash(20, fout);
                 }
 
                 if (amount > 1){
-                    recFBC(amount - 1, fout, newpaspart);
+                    recFBC(amount - 1, fout, newpasspart);
                 }
             }
         }
@@ -97,15 +111,16 @@ class PBRTF{
     public: void foutBrtfCombinations(int amount){
         ofstream fout;
         fout.open("./" + outputFileName);
+        foutShowInformation(&fout);
 
-        string paspart = "";
-        recFBC(amount, &fout, paspart);
+        string passpart = "";
+        recFBC(amount, &fout, passpart);
 
         fout << "EOF";
         fout.close();
     }
 
-    public: void showInformation(){
+    public: void coutShowInformation(){
         cout << "----------------------------------\n";
         cout << "PBRTF object information :" << endl;
         cout << "----------------------------------\n";
@@ -135,7 +150,7 @@ int main(){
     string alph = "123";
 
     PBRTF brtf(alph, "OutputFile.txt");
-    brtf.showInformation();
+    //brtf.coutShowInformation();
     brtf.foutBrtfCombinations(3);
 
     return 0;
