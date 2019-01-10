@@ -5,8 +5,8 @@ using namespace std;
 
 
 
-class PBRTexception{
-    public: PBRTexception(){}
+class PBRTException{
+    public: PBRTException(){}
 
     void oversizedFile(ofstream *fout){
         *fout << "File too big\nExit"; 
@@ -28,15 +28,34 @@ class PBRTF{
 
     public: 
 
+    
     char alph[4];
-    int linecount;
-    PBRTexception exception;
+    int linecount, alphLength;
+    PBRTException exception;
     string outputFileName;
 
-    PBRTF(char alph[], string filename){
-        alph = this->alph;
+    PBRTF(char inputAlph[], string filename){
+        alphLength = getAlphLength(inputAlph);
+        //alph = this->alph;
+        //alph = inputalph;
         outputFileName = filename;
         linecount = 0;
+    }
+
+    private: int getAlphLength(char alph[]){
+        bool flag = true;
+        int i = -1;
+        while (flag) do {
+            i++;
+            try{
+                char n = alph[i];
+                throw i;
+            }
+            catch(int length){
+                flag = false;
+                return length;
+            }
+        }
     }
 
     private: void foutdash(int dashcount, ofstream *fout){
@@ -51,21 +70,28 @@ class PBRTF{
     private: void recFBC(int amount, ofstream *fout, string paspart){
         string newpaspart;
 
-        for(int charNumber = 1; charNumber <= amount; charNumber++){
-            newpaspart = paspart + (char)alph[charNumber];
+        
+
+
+
+
+
+
+        /*for(int charNumber = 1; charNumber <= amount; charNumber++){
+            newpaspart = paspart + (char)alph[charNumber - 1];
 
             *fout << "amount = " << amount;
             *fout << "   charNumber = " << charNumber;
             *fout << "   paspart = " << paspart << endl;
 
-            if (exception.sizeCheck(++linecount)){
+            if (exception.sizeCheck(linecount)){
                 //exception.oversizedFile(fout);
+                *fout << "File too big\nExit"; 
                 exit;
             }
 
             recFBC(amount - 1, fout, newpaspart);
-        }
-        
+        }*/
         
         foutdash(20, fout);
     }
@@ -89,7 +115,7 @@ class PBRTF{
     public: void foutBrtfCombinations(int amount){
         ofstream fout;
         fout.open("./" + outputFileName);
-        string paspart;
+        string paspart = "";
 
         //for(int i = 0; i < 3; i++){ fout << i + 1 << endl;}
         recFBC(amount, &fout, paspart);
@@ -97,7 +123,6 @@ class PBRTF{
         fout << "EOF";
         fout.close();
     }
-
 
 };
 
@@ -110,7 +135,7 @@ int main(){
     char alph[] = {'1', '2', '3', '4'};
 
     PBRTF brtf(alph, "file.txt");
-    brtf.foutBrtfCombinations(3);
+    brtf.foutBrtfCombinations(5);
 
     return 0;
 }
