@@ -1,15 +1,4 @@
-amount = 3   charNumber = 1
-amount = 3   charNumber = 2
-amount = 3   charNumber = 3
-----------
-amount = 4   charNumber = 1
-amount = 4   charNumber = 2
-amount = 4   charNumber = 3
-amount = 4   charNumber = 4
-----------
-amount = 5   charNumber = 1
-amount = 5   charNumber = 2
-amount = 5   charNumber = 3
-amount = 5   charNumber = 4
-amount = 5   charNumber = 5
-----------
+1
+2
+3
+EOF

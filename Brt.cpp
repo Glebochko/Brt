@@ -7,6 +7,7 @@ using namespace std;
 
 class PBRTexception{
     public: PBRTexception(){}
+
     void oversizedFile(ofstream *fout){
         *fout << "File too big\nExit\nEOF"; 
         //*fout.close();
@@ -17,7 +18,8 @@ class PBRTexception{
         bool answer = false;
         if (linecount * 3 > 1000){
             answer = true;
-        }    
+        } 
+        return answer;   
     }
 };
     
@@ -26,7 +28,7 @@ class PBRTF{
 
     public: 
 
-    int alph[], linecount;
+    int alph[4], linecount;
     PBRTexception exception;
     string outputFileName;
 
@@ -70,13 +72,26 @@ class PBRTF{
         ofstream fout;
         fout.open("./" + outputFileName);
         string paspart;
-        PBRTexception exception();
+
         for(int amount = minAmount; amount <= maxAmount; amount++){
             
             recFBC(amount, &fout, paspart);
 
 
         }
+
+        fout << "EOF";
+        fout.close();
+    }
+
+    public: void foutBrtfCombinations(int amount){
+        ofstream fout;
+        fout.open("./" + outputFileName);
+        string paspart;
+
+        for(int i = 0; i < 3; i++){ fout << i + 1 << endl;}
+        //recFBC(amount, &fout, paspart);
+
         fout << "EOF";
         fout.close();
     }
@@ -93,7 +108,7 @@ int main(){
     int alph[] = {1, 2, 3, 4};
 
     PBRTF brtf(alph, "file.txt");
-    brtf.foutBrtfCombinations(3, 5);
+    brtf.foutBrtfCombinations(4);
 
     return 0;
 }
