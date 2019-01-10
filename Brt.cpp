@@ -25,20 +25,22 @@ class PBRTException{
     
 
 class PBRTF{
+    private:
+
+    char alph[4];
+    string inputStrAlph;
+    int linecount, alphLength;
+    string outputFileName;
+    PBRTException exception;
 
     public: 
-    
-    char alph[4];
-    string strAlph;
-    int linecount, alphLength;
-    PBRTException exception;
-    string outputFileName;
 
-    PBRTF(string inputStrAlph, string filename){
-        //alph = this->alph;
+    PBRTF(string inputStrAlph, string outputFileName){
+        this->inputStrAlph = inputStrAlph;
+        this->outputFileName = outputFileName;
         //alph = inputalph;
-        alphLength = inputStrAlph.size();
-        outputFileName = filename;
+        alphLength = this->inputStrAlph.size();
+        
         linecount = 0;
     }
 
@@ -108,6 +110,18 @@ class PBRTF{
         fout.close();
     }
 
+    public: void showInformation(){
+        cout << "-------------------------------\n";
+        cout << "PBRTF object information :" << endl;
+        cout << "-------------------------------\n";
+        cout << "Input alphabet = " << inputStrAlph << endl;
+        cout << "Length of alphabet = " << alphLength << endl;
+        cout << "Output file name = " << outputFileName << endl;
+        //cout << " = " <<  << endl;
+        cout << "-------------------------------\n";
+        
+    }
+
 };
 
 
@@ -119,6 +133,8 @@ int main(){
     string alph = "1234";
 
     PBRTF brtf(alph, "file.txt");
-    brtf.foutBrtfCombinations(5);
+    brtf.showInformation();
+    brtf.foutBrtfCombinations(3);
+
     return 0;
 }
