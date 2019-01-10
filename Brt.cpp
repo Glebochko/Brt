@@ -12,10 +12,17 @@ class PBRTexception{
         //*fout.close();
         exit;
     } 
+
+    bool sizeCheck(int linecount){
+        bool answer = false;
+        if (linecount * 3 > 1000){
+            answer = true;
+        }    
+    }
 };
     
 
-class PBRT{
+class PBRTF{
 
     public: 
 
@@ -23,7 +30,7 @@ class PBRT{
     PBRTexception exception;
     string outputFileName;
 
-    PBRT(int alph[], string filename){
+    PBRTF(int alph[], string filename){
         alph = this->alph;
         outputFileName = filename;
         linecount = 0;
@@ -48,10 +55,10 @@ class PBRT{
             *fout << "   charNumber = " << charNumber;
             *fout << "   paspart = " << paspart << endl;
 
-            linecount++;
-            if (linecount * 3 > 1000){
+            if (exception.sizeCheck(++linecount)){
                 exception.oversizedFile(fout);
             }
+
             recFBC(amount, fout, newpaspart);
         }
         
@@ -59,7 +66,7 @@ class PBRT{
         foutdash(2, fout);
     }
 
-    public: void foutBrtCombinations(int minAmount, int maxAmount){
+    public: void foutBrtfCombinations(int minAmount, int maxAmount){
         ofstream fout;
         fout.open("./" + outputFileName);
         string paspart;
@@ -80,11 +87,13 @@ class PBRT{
 
 
 
+
+
 int main(){
     int alph[] = {1, 2, 3, 4};
 
-    PBRT brt(alph, "file.txt");
-    brt.foutBrtCombinations(3, 5);
+    PBRTF brtf(alph, "file.txt");
+    brtf.foutBrtfCombinations(3, 5);
 
     return 0;
 }
