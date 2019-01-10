@@ -1,33 +1,71 @@
 PBRTF object information :
-Input alphabet = 1 2 3 
-Length of alphabet = 3
+Input alphabet = a b c d 
+Length of alphabet = 4
+Amount character in password = 3
 Output file name = OutputFile.txt
-----------------------------------
-AL = 3  pass = 111
-AL = 3  pass = 112
-AL = 3  pass = 113
-AL = 3  pass = 121
-AL = 3  pass = 122
-AL = 3  pass = 123
-AL = 3  pass = 131
-AL = 3  pass = 132
-AL = 3  pass = 133
-AL = 3  pass = 211
-AL = 3  pass = 212
-AL = 3  pass = 213
-AL = 3  pass = 221
-AL = 3  pass = 222
-AL = 3  pass = 223
-AL = 3  pass = 231
-AL = 3  pass = 232
-AL = 3  pass = 233
-AL = 3  pass = 311
-AL = 3  pass = 312
-AL = 3  pass = 313
-AL = 3  pass = 321
-AL = 3  pass = 322
-AL = 3  pass = 323
-AL = 3  pass = 331
-AL = 3  pass = 332
-AL = 3  pass = 333
+------------------------------------
+password = aaa
+password = aab
+password = aac
+password = aad
+password = aba
+password = abb
+password = abc
+password = abd
+password = aca
+password = acb
+password = acc
+password = acd
+password = ada
+password = adb
+password = adc
+password = add
+password = baa
+password = bab
+password = bac
+password = bad
+password = bba
+password = bbb
+password = bbc
+password = bbd
+password = bca
+password = bcb
+password = bcc
+password = bcd
+password = bda
+password = bdb
+password = bdc
+password = bdd
+password = caa
+password = cab
+password = cac
+password = cad
+password = cba
+password = cbb
+password = cbc
+password = cbd
+password = cca
+password = ccb
+password = ccc
+password = ccd
+password = cda
+password = cdb
+password = cdc
+password = cdd
+password = daa
+password = dab
+password = dac
+password = dad
+password = dba
+password = dbb
+password = dbc
+password = dbd
+password = dca
+password = dcb
+password = dcc
+password = dcd
+password = dda
+password = ddb
+password = ddc
+password = ddd
 EOF

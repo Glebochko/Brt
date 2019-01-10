@@ -54,7 +54,7 @@ class PBRTF{
         }
     }
 
-    private: void foutShowInformation(ofstream *fout){
+    private: void foutShowInformation(ofstream *fout, int amount){
         *fout << "PBRTF object information :" << endl;
         *fout << "Input alphabet = ";
         for(int i = 0; i < alphLength; i++){
@@ -64,8 +64,34 @@ class PBRTF{
             }
         }
         *fout << "Length of alphabet = " << alphLength << endl;
+        *fout << "Amount character in password = " << amount << endl;
         *fout << "Output file name = " << outputFileName << endl;
-        *fout << "----------------------------------\n";
+        *fout << "------------------------------------\n";
+        
+    }
+
+    private: void foutShowInformationMulti(ofstream *fout, int minAmount, int maxAmount){
+        *fout << "PBRTF object information :" << endl;
+        *fout << "Input alphabet = ";
+        for(int i = 0; i < alphLength; i++){
+            *fout << alph[i] << " ";
+            if (i == alphLength - 1){
+                *fout << endl;
+            }
+        }
+        *fout << "Length of alphabet = " << alphLength << endl;
+        *fout << "Amount character in password = ";
+        for(int amount = minAmount; amount <= maxAmount; amount++){
+            *fout << amount;
+            if (amount == maxAmount){
+                *fout << endl;
+            }
+            else{
+                *fout << "; ";
+            }
+        }
+        *fout << "Output file name = " << outputFileName << endl;
+        *fout << "------------------------------------\n";
         
     }
 
@@ -77,9 +103,7 @@ class PBRTF{
             for(int charNumb = 0; charNumb < alphLength; charNumb++){
                 newpasspart = passpart + alph[charNumb];
                 if (amount == 1){
-                     *fout << "AL = " << alphLength;
-                     *fout << "  pass = " << newpasspart << endl;
-                    // *fout << newpasspart << endl;
+                     *fout << "password = " << newpasspart << endl;
                     //foutdash(20, fout);
                 }
 
@@ -96,12 +120,11 @@ class PBRTF{
     public: void foutBrtfCombinations(int minAmount, int maxAmount){
         ofstream fout;
         fout.open("./" + outputFileName);
-        string paspart;
+        foutShowInformationMulti(&fout, minAmount, maxAmount);
 
         for(int amount = minAmount; amount <= maxAmount; amount++){
-            
-            recFBC(amount, &fout, paspart);
-
+            string passpart = "";
+            recFBC(amount, &fout, passpart);
         }
 
         fout << "EOF";
@@ -111,7 +134,7 @@ class PBRTF{
     public: void foutBrtfCombinations(int amount){
         ofstream fout;
         fout.open("./" + outputFileName);
-        foutShowInformation(&fout);
+        foutShowInformation(&fout, amount);
 
         string passpart = "";
         recFBC(amount, &fout, passpart);
@@ -121,9 +144,9 @@ class PBRTF{
     }
 
     public: void coutShowInformation(){
-        cout << "----------------------------------\n";
+        cout << "------------------------------------\n";
         cout << "PBRTF object information :" << endl;
-        cout << "----------------------------------\n";
+        cout << "------------------------------------\n";
         cout << "Input alphabet = ";
         for(int i = 0; i < alphLength; i++){
             cout << alph[i] << " ";
@@ -135,7 +158,7 @@ class PBRTF{
         cout << "Output file name = " << outputFileName << endl;
         cout << "Estimated number of combinations = " << alphLength << "^Amount = <?>" << endl;
         //cout << " = " <<  << endl;
-        cout << "----------------------------------\n";
+        cout << "------------------------------------\n";
         
     }
 
@@ -147,11 +170,11 @@ class PBRTF{
 
 
 int main(){
-    string alph = "123";
+    string alph = "abcd";
 
     PBRTF brtf(alph, "OutputFile.txt");
-    //brtf.coutShowInformation();
-    brtf.foutBrtfCombinations(3);
+    brtf.coutShowInformation();
+    brtf.foutBrtfCombinations(3, 4);
 
     return 0;
 }
