@@ -27,35 +27,19 @@ class PBRTException{
 class PBRTF{
 
     public: 
-
     
     char alph[4];
+    string strAlph;
     int linecount, alphLength;
     PBRTException exception;
     string outputFileName;
 
-    PBRTF(char inputAlph[], string filename){
-        alphLength = getAlphLength(inputAlph);
+    PBRTF(string inputStrAlph, string filename){
         //alph = this->alph;
         //alph = inputalph;
+        alphLength = inputStrAlph.size();
         outputFileName = filename;
         linecount = 0;
-    }
-
-    private: int getAlphLength(char alph[]){
-        bool flag = true;
-        int i = -1;
-        while (flag) do {
-            i++;
-            try{
-                char n = alph[i];
-                throw i;
-            }
-            catch(int length){
-                flag = false;
-                return length;
-            }
-        }
     }
 
     private: void foutdash(int dashcount, ofstream *fout){
@@ -132,10 +116,9 @@ class PBRTF{
 
 
 int main(){
-    char alph[] = {'1', '2', '3', '4'};
+    string alph = "1234";
 
     PBRTF brtf(alph, "file.txt");
     brtf.foutBrtfCombinations(5);
-
     return 0;
 }
