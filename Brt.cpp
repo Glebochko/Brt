@@ -56,32 +56,27 @@ class PBRTF{
     }
 
     private: void recFBC(int amount, ofstream *fout, string paspart){
-        string newpaspart;
+        if (amount >= 1){
 
-        
+            string newpaspart;
 
+            for(int charNumb = 0; charNumb < alphLength; charNumb++){
+                newpaspart = paspart + alph[charNumb];
+                if (amount == 1){
+                    *fout << "amount = " << amount;
+                    *fout << "   charNumb = " << charNumb;
+                    *fout << "   newpaspart = " << newpaspart << endl;
+                    //foutdash(20, fout);
+                }
 
-
-
-
-
-        /*for(int charNumber = 1; charNumber <= amount; charNumber++){
-            newpaspart = paspart + (char)alph[charNumber - 1];
-
-            *fout << "amount = " << amount;
-            *fout << "   charNumber = " << charNumber;
-            *fout << "   paspart = " << paspart << endl;
-
-            if (exception.sizeCheck(linecount)){
-                //exception.oversizedFile(fout);
-                *fout << "File too big\nExit"; 
-                exit;
+                if (amount > 1){
+                    recFBC(amount - 1, fout, newpaspart);
+                }
             }
+        }
 
-            recFBC(amount - 1, fout, newpaspart);
-        }*/
-        
-        foutdash(20, fout);
+
+
     }
 
     public: void foutBrtfCombinations(int minAmount, int maxAmount){
@@ -93,7 +88,6 @@ class PBRTF{
             
             recFBC(amount, &fout, paspart);
 
-
         }
 
         fout << "EOF";
@@ -103,9 +97,8 @@ class PBRTF{
     public: void foutBrtfCombinations(int amount){
         ofstream fout;
         fout.open("./" + outputFileName);
-        string paspart = "";
 
-        //for(int i = 0; i < 3; i++){ fout << i + 1 << endl;}
+        string paspart = "";
         recFBC(amount, &fout, paspart);
 
         fout << "EOF";
@@ -125,7 +118,7 @@ class PBRTF{
         }
         cout << "Length of alphabet = " << alphLength << endl;
         cout << "Output file name = " << outputFileName << endl;
-        cout << "Estimated number of combinations = " << "-?-" << endl;
+        cout << "Estimated number of combinations = " << alphLength << "^Amount = <?>" << endl;
         //cout << " = " <<  << endl;
         cout << "----------------------------------\n";
         
@@ -139,10 +132,10 @@ class PBRTF{
 
 
 int main(){
-    string alph = "1234";
+    string alph = "123";
 
     PBRTF brtf(alph, "OutputFile.txt");
-    //brtf.showInformation();
+    brtf.showInformation();
     brtf.foutBrtfCombinations(3);
 
     return 0;

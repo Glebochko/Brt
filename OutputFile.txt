@@ -1,2 +1,28 @@
---------------------
+amount = 1   charNumb = 0   newpaspart = 111
+amount = 1   charNumb = 1   newpaspart = 112
+amount = 1   charNumb = 2   newpaspart = 113
+amount = 1   charNumb = 0   newpaspart = 121
+amount = 1   charNumb = 1   newpaspart = 122
+amount = 1   charNumb = 2   newpaspart = 123
+amount = 1   charNumb = 0   newpaspart = 131
+amount = 1   charNumb = 1   newpaspart = 132
+amount = 1   charNumb = 2   newpaspart = 133
+amount = 1   charNumb = 0   newpaspart = 211
+amount = 1   charNumb = 1   newpaspart = 212
+amount = 1   charNumb = 2   newpaspart = 213
+amount = 1   charNumb = 0   newpaspart = 221
+amount = 1   charNumb = 1   newpaspart = 222
+amount = 1   charNumb = 2   newpaspart = 223
+amount = 1   charNumb = 0   newpaspart = 231
+amount = 1   charNumb = 1   newpaspart = 232
+amount = 1   charNumb = 2   newpaspart = 233
+amount = 1   charNumb = 0   newpaspart = 311
+amount = 1   charNumb = 1   newpaspart = 312
+amount = 1   charNumb = 2   newpaspart = 313
+amount = 1   charNumb = 0   newpaspart = 321
+amount = 1   charNumb = 1   newpaspart = 322
+amount = 1   charNumb = 2   newpaspart = 323
+amount = 1   charNumb = 0   newpaspart = 331
+amount = 1   charNumb = 1   newpaspart = 332
+amount = 1   charNumb = 2   newpaspart = 333
 EOF
