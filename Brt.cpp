@@ -9,9 +9,9 @@ class PBRTexception{
     public: PBRTexception(){}
 
     void oversizedFile(ofstream *fout){
-        *fout << "File too big\nExit\nEOF"; 
+        *fout << "File too big\nExit"; 
         //*fout.close();
-        exit;
+        
     } 
 
     bool sizeCheck(int linecount){
@@ -28,11 +28,12 @@ class PBRTF{
 
     public: 
 
-    int alph[4], linecount;
+    char alph[4];
+    int linecount;
     PBRTexception exception;
     string outputFileName;
 
-    PBRTF(int alph[], string filename){
+    PBRTF(char alph[], string filename){
         alph = this->alph;
         outputFileName = filename;
         linecount = 0;
@@ -58,14 +59,15 @@ class PBRTF{
             *fout << "   paspart = " << paspart << endl;
 
             if (exception.sizeCheck(++linecount)){
-                exception.oversizedFile(fout);
+                //exception.oversizedFile(fout);
+                exit;
             }
 
-            recFBC(amount, fout, newpaspart);
+            recFBC(amount - 1, fout, newpaspart);
         }
         
         
-        foutdash(2, fout);
+        foutdash(20, fout);
     }
 
     public: void foutBrtfCombinations(int minAmount, int maxAmount){
@@ -89,8 +91,8 @@ class PBRTF{
         fout.open("./" + outputFileName);
         string paspart;
 
-        for(int i = 0; i < 3; i++){ fout << i + 1 << endl;}
-        //recFBC(amount, &fout, paspart);
+        //for(int i = 0; i < 3; i++){ fout << i + 1 << endl;}
+        recFBC(amount, &fout, paspart);
 
         fout << "EOF";
         fout.close();
@@ -105,10 +107,10 @@ class PBRTF{
 
 
 int main(){
-    int alph[] = {1, 2, 3, 4};
+    char alph[] = {'1', '2', '3', '4'};
 
     PBRTF brtf(alph, "file.txt");
-    brtf.foutBrtfCombinations(4);
+    brtf.foutBrtfCombinations(3);
 
     return 0;
 }
