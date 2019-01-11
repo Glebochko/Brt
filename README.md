@@ -1,5 +1,4 @@
 # Brt
-===
 
 Technology stack
 ---
