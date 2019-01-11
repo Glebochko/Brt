@@ -8,12 +8,11 @@ using namespace std;
 /*class PBRTException{
     public: PBRTException(){}
 
-    void oversizedFile(ofstream *fout){
-        *fout << "File too big\nExit"; 
-        
+    provate: void oversizedFile(ofstream *fout){
+        *fout << "File too big";    
     } 
 
-    bool sizeCheck(int linecount){
+    public: bool sizeCheck(int linecount){
         bool answer = false;
         if (linecount * 3 > 1000){
             answer = true;
@@ -26,14 +25,15 @@ using namespace std;
 class PBRTF{
     private:
 
-    char alph[4];
-    int linecount, alphLength;
+    char alph[20];
+    int linecount, alphLength, maxRepeatAmount;
     string inputStrAlph, outputFileName;
     //PBRTException exception;
 
-    public: PBRTF(string inputStrAlph, string outputFileName){
+    public: PBRTF(string inputStrAlph, int maximumRepeatAmountInPassword, string outputFileName){
         this->inputStrAlph = inputStrAlph;
         this->outputFileName = outputFileName;
+        maxRepeatAmount = maximumRepeatAmountInPassword;
         alphLength = this->inputStrAlph.size();
         setAlphArray(alph, this->inputStrAlph, alphLength);
         linecount = 0;
@@ -64,7 +64,7 @@ class PBRTF{
             }
         }
         *fout << "Length of alphabet = " << alphLength << endl;
-        *fout << "Amount character in password = " << amount << endl;
+        *fout << "Password length = " << amount << endl;
         *fout << "Output file name = " << outputFileName << endl;
         foutdash(35, fout);
         
@@ -80,7 +80,7 @@ class PBRTF{
             }
         }
         *fout << "Length of alphabet = " << alphLength << endl;
-        *fout << "Amount character in password = ";
+        *fout << "Password length = ";
         for(int amount = minAmount; amount <= maxAmount; amount++){
             *fout << amount;
             if (amount == maxAmount){
@@ -97,26 +97,41 @@ class PBRTF{
 
     private: bool checkOptimality(string s){
         bool answer = true;
+        int n = sizeof(s);
+        char symbol;
+        int maxAlph = 130;
+        int charcount[maxAlph];
 
+        for(int i = 0; i <= maxAlph; i++){
+            charcount[i] = 0;
+        }
 
+        for(int i = 0; i < n; i++){
+            symbol = s[i];
+            charcount[symbol] += 1;
+        }
+        
+        for(int i = 30; i < maxAlph; i++){
+            //if(i == 0){charcount[i] = 0;}  //reinforced concrete crutch (all by technologies)
+            if(charcount[i] > maxRepeatAmount){
+                answer = false;
+            }
+        }
 
         return answer;
     }
 
     private: void recFBC(int amount, ofstream *fout, string passpart){
         if (amount >= 1){
-
             string newpasspart;
 
             for(int charNumb = 0; charNumb < alphLength; charNumb++){
                 newpasspart = passpart + alph[charNumb];
                 if (amount == 1){
-                    *fout << "password = ";
-                    *fout << newpasspart;
-                    if (checkOptimality(newpasspart) == false){
-                        *fout << " - not optimaze";
+                    if (checkOptimality(newpasspart)){
+                        *fout << newpasspart << endl;
                     }
-                    *fout << endl;
+                    //if (!checkOptimality(newpasspart)){*fout << newpasspart << " - not optimized\n";}
                 }
 
                 if (amount > 1){
@@ -126,12 +141,12 @@ class PBRTF{
         }
     }
 
-    public: void foutBrtfCombinations(int minAmount, int maxAmount){
+    public: void foutBrtfCombinations(int minPasswordLength, int maxPasswordLength){
         ofstream fout;
         fout.open("./" + outputFileName);
-        foutShowInformationMulti(&fout, minAmount, maxAmount);
+        foutShowInformationMulti(&fout, minPasswordLength, maxPasswordLength);
 
-        for(int amount = minAmount; amount <= maxAmount; amount++){
+        for(int amount = minPasswordLength; amount <= maxPasswordLength; amount++){
             string passpart = "";
             recFBC(amount, &fout, passpart);
         }
@@ -140,13 +155,13 @@ class PBRTF{
         fout.close();
     }
 
-    public: void foutBrtfCombinations(int amount){
+    public: void foutBrtfCombinations(int passwordLength){
         ofstream fout;
         fout.open("./" + outputFileName);
-        foutShowInformation(&fout, amount);
+        foutShowInformation(&fout,passwordLength);
 
         string passpart = "";
-        recFBC(amount, &fout, passpart);
+        recFBC(passwordLength, &fout, passpart);
 
         fout << "EOF";
         fout.close();
@@ -179,11 +194,11 @@ class PBRTF{
 
 
 int main(){
-    string alph = "ab";
+    string alph = "12345";
 
-    PBRTF brtf(alph, "OutputFile.txt");
-    brtf.coutShowInformation();
-    brtf.foutBrtfCombinations(5, 6);
+    PBRTF brtf(alph, 1, "OutputFile.txt");
+    //brtf.coutShowInformation();
+    brtf.foutBrtfCombinations(5);
 
     return 0;
 }
